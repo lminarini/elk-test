@@ -1,0 +1,14 @@
+logstash:
+  container_name: LogStash    
+  image: logstash:2.4
+  depends_on:
+    - rabbitmq
+    - elasticsearch
+  links:
+    - rabbitmq:AMQPServer
+    - elasticsearch:ElasticSearchServer
+  networks:
+    - log    
+  volumes:
+    - ./../../config/logstash/logstash-EnterpriseLog.conf:/config/logstash-EnterpriseLog.conf
+  command: ["-f", "/config/logstash-EnterpriseLog.conf"]

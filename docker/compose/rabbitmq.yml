@@ -1,0 +1,14 @@
+rabbitmq:
+  container_name: RabbitMQ
+  image: rabbitmq:3-management
+#    volumes:
+#      - ./rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
+  ports:
+    - "15672:15672"
+    - "5672:5672"    
+  networks:
+    - log
+  environment:
+    RABBITMQ_DEFAULT_USER: logUser
+    RABBITMQ_DEFAULT_PASS: logPwd
+    RABBITMQ_DEFAULT_VHOST: EnterpriseLog
